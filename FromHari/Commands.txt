@@ -1,0 +1,10 @@
+docker build -t nginx-demo .
+
+kubectl create -f nginx-deployment.yaml
+
+verify in namespace,
+
+kubectl create -f nginx-service.yaml
+
+kubectl create -f nginx-ingress.yaml
+

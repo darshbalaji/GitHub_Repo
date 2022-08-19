@@ -1,0 +1,27 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ingress-tls-aps
+  namespace: balaji
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    external-dns.alpha.kubernetes.io/target: ingress.orbit.cgiallpayments.cloud
+    external-dns.alpha.kubernetes.io/ttl: '30'
+    kubernetes.io/ingress.class: nginx
+
+spec:
+  tls:
+    - hosts:
+        - nginx.balaji.orbit.cgiallpayments.cloud
+  rules:
+    - host: nginx.balaji.orbit.cgiallpayments.cloud
+      http:
+        paths:
+          - path: /index.html
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 8080

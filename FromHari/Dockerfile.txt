@@ -1,0 +1,5 @@
+FROM nginx:1.14.2
+
+RUN apt-get install curl
+
+RUN echo "hello welcome to demo" >> /usr/share/nginx/html/index.html
